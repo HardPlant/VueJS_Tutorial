@@ -11,15 +11,21 @@
 
 <body>
     <div id="simple">
+        <!--View-->
         <h2>{{message}}</h2>
+        <!-- Mustach Expression-->
+        <h2 v-text="message"></h2>
+        <!-- Encodes HTML tag-->
+        <h2 v-html="message"></h2>
+        <!-- Do not Encode, Vulnerable to XSS-->
     </div>
 
     <script type="text/javascript">
-        var model = {
+        var model = { //Model
             message: '첫 번째 Vue.js 앱입니다.'
         };
 
-        var simple = new Vue({
+        var simple = new Vue({ // View Model
             el: '#simple',
             data: model
         })
