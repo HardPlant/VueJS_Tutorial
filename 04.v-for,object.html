@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to Vue</title>
+    <script src="https://unpkg.com/vue"></script>
+    <meta charset="utf-8">
+    <title>hello vue.js</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+
+    <style>
+        #list {
+            width: 400px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        #list td,
+        #list th {
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        #list>thead>tr {
+            color: yellow;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="example">
+        <select id="regions">
+            <option disabled="disabled" selected> 지역을 선택하세요</option>
+            <option v-for="(val,key) in regions" v-bind:value="key">{{val}}</option>
+        </select>
+    </div>
+    <script type="text/javascript">
+        var regions = {
+            "A": "Asia",
+            "B": "Asia",
+            "C": "Asia",
+            "D": "Asia",
+            "E": "Asia",
+        };
+
+        var list = new Vue({
+            el: "#example",
+            data: {
+                regions: regions
+            }
+        })
+    </script>
+</body>
