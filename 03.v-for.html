@@ -40,7 +40,8 @@
                 </tr>
             </thead>
             <tbody id="contacts">
-                <tr v-for="contact in contacts">
+                <tr v-for="(contact, index) in contacts" v-if="contact.address.indexOf('서울')>-1">
+                    <td>{{index+1}}</td>
                     <td>{{contact.no}}</td>
                     <td>{{contact.name}}</td>
                     <td>{{contact.tel}}</td>
@@ -63,12 +64,12 @@
                 "no": 100,
                 "name": "설현",
                 "tel": "010-0000-0000",
-                "address": "서울"
+                "address": "서"
             }, {
                 "no": 100,
                 "name": "설현",
                 "tel": "010-0000-0000",
-                "address": "서울"
+                "address": "서"
             }, {
                 "no": 100,
                 "name": "설현",
