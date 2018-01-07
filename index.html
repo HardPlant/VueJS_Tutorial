@@ -18,11 +18,16 @@
         <!-- Encodes HTML tag-->
         <h2 v-html="message"></h2>
         <!-- Do not Encode, Vulnerable to XSS-->
+
+        <input id="a" type="text" v-bind:value="message">
+        <br/>
+        <img v-bind:src="imagePath" />
     </div>
 
     <script type="text/javascript">
         var model = { //Model
-            message: '첫 번째 Vue.js 앱입니다.'
+            message: '첫 번째 Vue.js 앱입니다.',
+            imagePath: "http://sample.bmaster.kro.kr/photos/61.jpg"
         };
 
         var simple = new Vue({ // View Model
