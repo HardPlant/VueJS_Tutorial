@@ -50,6 +50,35 @@
             data: model
         })
     </script>
+
+
+
+    <div id="checkboxes">
+        <div>Select it.</div>
+        <input type="checkbox" value="1" v-model="fruits">사과,
+        <input type="checkbox" value="2" v-model="fruits">사과,
+        <input type="checkbox" value="3" v-model="fruits">사과,
+        <input type="checkbox" value="4" v-model="fruits">사과,
+        <input type="checkbox" value="5" v-model="fruits">사과,
+    </div>
+    <hr/>
+    <div id="checkboxes-selected">
+        선택한 과일들 : <span v-html="fruits"></span>
+    </div>
+    <script type="text/javascript">
+        var model = {
+            fruits: []
+        };
+        var checkboxes = new Vue({
+            el: '#checkboxes',
+            data: model
+        });
+
+        var selected = new Vue({
+            el: '#checkboxes-selected',
+            data: model
+        });
+    </script>
 </body>
 
 </html>
