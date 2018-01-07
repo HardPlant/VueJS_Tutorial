@@ -46,6 +46,49 @@
     </div>
 
     <script type="text/javascript">
+        var model = {
+            countryname: "",
+            countries: [{
+                no: 1,
+                name: "미국",
+                capital: "워싱턴DC",
+                region: "america"
+            }, {
+                no: 2,
+                name: "미국",
+                capital: "워싱턴DC",
+                region: "america"
+            }, {
+                no: 3,
+                name: "미국",
+                capital: "워싱턴DC",
+                region: "america"
+            }, {
+                no: 4,
+                name: "미국",
+                capital: "워싱턴DC",
+                region: "america"
+            }, {
+                no: 5,
+                name: "미국",
+                capital: "워싱턴DC",
+                region: "america"
+            }, ]
+        }
+        var clist = new Vue({
+            el = "#example",
+            data: model,
+            computed: {
+                filtered: function() {
+                    var cname = this.countryname.trim();
+                    return this.countries.filter(function(item, index) {
+                        if (item.name.indexOf(cname) > -1) {
+                            return true;
+                        }
+                    })
+                }
+            }
+        })
     </script>
 </body>
 
