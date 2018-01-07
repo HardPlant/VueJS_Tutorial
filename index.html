@@ -22,9 +22,24 @@
         <input id="a" type="text" v-bind:value="message">
         <br/>
         <img v-bind:src="imagePath" />
+        <!-- This is unidirect bind, doesn't change model.-->
+    </div>
+
+    <div id="simple2">
+        <input id="a" type="text" v-model="name" placeholder="name">
+        <br/> 입력된 이름 :
+        <h2 v-html="name"></h2>
+        <!-- This is bidirect bind, changes model.-->
     </div>
 
     <script type="text/javascript">
+        var twoway = new Vue({
+            el: "#simple2",
+            data: {
+                name: ''
+            }
+        })
+
         var model = { //Model
             message: '첫 번째 Vue.js 앱입니다.',
             imagePath: "http://sample.bmaster.kro.kr/photos/61.jpg"
