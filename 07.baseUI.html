@@ -28,7 +28,7 @@
 <body>
     <div id="example">
         <p>
-            국가명 : <input type="text" placeholder="국가명" />
+            국가명 : <input type="text" v-model="countryname" placeholder="국가명" />
         </p>
         <table id="list">
             <thead>
@@ -40,6 +40,12 @@
                 </tr>
             </thead>
             <tbody id="contacts">
+                <tr v-for="c in filtered">
+                    <td>{{c.no}}</td>
+                    <td>{{c.name}}</td>
+                    <td>{{c.capital}}</td>
+                    <td>{{c.region}}</td>
+                </tr>
 
             </tbody>
         </table>
@@ -76,7 +82,7 @@
             }, ]
         }
         var clist = new Vue({
-            el = "#example",
+            el: "#example",
             data: model,
             computed: {
                 filtered: function() {
