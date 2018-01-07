@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to Vue</title>
+    <script src="https://unpkg.com/vue"></script>
+    <meta charset="utf-8">
+    <title>hello vue.js</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+
+    <style>
+        #list {
+            width: 400px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        #list td,
+        #list th {
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        #list>thead>tr {
+            color: yellow;
+            background-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="example">
+        <table id="list">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>주소</th>
+                </tr>
+            </thead>
+            <tbody id="contacts">
+                <tr v-for="contact in contacts">
+                    <td>{{contact.no}}</td>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.tel}}</td>
+                    <td>{{contact.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        var model = { // Model
+            "pageno": 1,
+            "pagesize": 10,
+            "totalcount": 100,
+            "contacts": [{
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 100,
+                "name": "설현",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, ]
+        }
+        var list = new Vue({ //View Model
+            el: "#example",
+            data: model
+        })
+    </script>
+</body>
