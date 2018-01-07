@@ -22,7 +22,7 @@
             },
             computed: { // compute
                 sum: function() {
-                    var n = Number(this.num);
+                    var n = Number(this.num); // all of HTML element is String, so need to parse it.
                     if (Number.isNaN(n) || n < 1) return 0;
                     return ((1 + n) * n) / 2;
                 }
