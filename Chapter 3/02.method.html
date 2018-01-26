@@ -22,6 +22,7 @@
             },
             methods: {
                 sum: function() {
+                    console.log(Date.now());
                     var n = Number(this.num);
                     if (Number.isNaN(n) || n < 1) return 0;
                     return ((1 + n) * n) / 2;
