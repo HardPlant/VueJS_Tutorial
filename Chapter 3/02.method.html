@@ -11,6 +11,7 @@
 <body>
     <div id="example">
         <input type="text" v-model="num" /><br/> 1부터 입력된 수까지의 합 : <span>{{sum()}}</span>
+        <!-- 계산형 속성은 결과가 캐시되지만, 메서드 속성은 캐시되지 않는다!-->
     </div>
 
     <script>
