@@ -1,0 +1,31 @@
+<html>
+
+<head>
+
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="example">
+        <div :style="{backgroundColor : a.bc, border:a.bd, width:a.w+'px', height:a.h+'px'}">
+
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#example",
+            data: {
+                a: {
+                    bc: 'yellow',
+                    bd: 'solid 1px gray',
+                    w: 200,
+                    h: 100
+                },
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>
