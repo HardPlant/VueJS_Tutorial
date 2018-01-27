@@ -42,12 +42,15 @@
                     console.log(e.eventPhase);
                     console.log(e.currentTarget)
                     console.log(e.target)
+                    e.stopPropagation();
+
                 },
                 innerClick: function(e) {
                     console.log("INNER")
                     console.log(e.eventPhase);
                     console.log(e.currentTarget)
                     console.log(e.target) // src
+                    e.stopPropagation();
                 }
 
             }
