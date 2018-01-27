@@ -21,6 +21,14 @@
                 y: 0,
                 sum: 0
             },
+            created: function() {
+                console.log("Created!")
+            },
+            updated: function() {
+                console.log("updated!");
+                console.log(this.num);
+
+            },
             watch: {
                 x: function(v) {
                     console.log("## x 변경");
