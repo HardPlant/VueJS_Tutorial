@@ -40,14 +40,14 @@
                 outerClick: function(e) {
                     console.log("OUTER")
                     console.log(e.eventPhase);
-                    console.log(e.currentPhase)
+                    console.log(e.currentTarget)
                     console.log(e.target)
                 },
                 innerClick: function(e) {
                     console.log("INNER")
                     console.log(e.eventPhase);
-                    console.log(e.currentPhase)
-                    console.log(e.target)
+                    console.log(e.currentTarget)
+                    console.log(e.target) // src
                 }
 
             }
