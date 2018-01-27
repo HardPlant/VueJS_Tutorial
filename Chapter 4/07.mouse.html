@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #example {
+            height: 98vh;
+            min-height: 100%;
+            padding: 5px;
+        }
+    </style>
+
+
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="example" v-on:contextmenu.prevent="ctxStop" @mouseup.left="leftMouse" @mouseup.right="rightMouse">
+        <div>Left Click : left Right Click : right</div>
+        <img src="images/icon_8.png" v-bind:style="{ position: 'absolute', left: pos.left + 'px', top: pos.top + 'px' }" />
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: "#example",
+            data: {
+                pos: {
+                    left: 100,
+                    top: 100
+                }
+            },
+            methods: {
+                ctxStop: function(e) {},
+                leftMouse: function(e) {
+                    if (this.pos.left > 30)
+                        this.pos.left -= 30;
+
+                },
+                rightMouse: function(e) {
+                    this.pos.left += 30;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
