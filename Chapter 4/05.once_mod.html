@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .layout1 {
+            margin: 30px 30px 30px 30px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="example" class="container layout1">
+        <p><input type="text" v-model="amount" class="form-control" /></p>
+        <p>
+            <button id="create" v-on:click.once="create" class="btn btn-primary">이벤트</button>
+            <button id="deposit" v-on:click="deposit" class="btn btn-primary">예금</button>
+            <button id="withdraw" v-on:click="withdraw" class="btn btn-primary">인출</button>
+        </p>
+        <h3>계좌 잔고 : {{balance}}</h3>
+    </div>
+    <script>
+        var vm = new Vue({
+                el: "#example",
+                data: {
+                    amount: 0,
+                    balance: 0,
+                },
+                methods: {
+                    create: function(e) {
+                        this.balance += 10000;
+                    },
+                    deposit: function(e) {
+                        var amt = parseInt(this.amount);
+                        if (amt <= 0) {
+                            alert("more than 0");
+                        } else {
+                            this.balance += amt;
+                        }
+
+                    },
+                    withdraw: function(e) {
+                        var amt = parseInt(this.amount);
+                        if (amt <= 0) {
+                            alert("more than 0");
+                        } else if (amt > this.balance) {
+                            alert("not enough");
+                        } else {
+                            this.balance -= amt;
+                        }
+                    }
+                }
+            })
+            /* event object(e)
+            target : returns event triggered HTML element
+            currentTarget : return event handler triggering HTML element
+            path : HTML Full path, array
+            bubbles : event bubbles?
+            cancelable : can be prevented?
+            defaultPrevented : currently prevented?
+            eventPhase : [CAPTURE, AT_TAGER, BUBBLEING]
+            srcElement : (IE)
+            ----
+            preventDefault() : prevent autorun
+            stopPropagation() : prevent prop
+            */
+            /*
+            keyboard : altkey, ctrlkey, shiftkey, metakey(Window,Command),key, code,keyCode..
+            mouse : button (0, 1(wheel), 2), buttons(after event pressing)
+            clientX, clientY : on-viewport coord
+            layerX, layerY : on HTML element coord
+            pageX, pageY : on HTML Document coord
+            screenX, screenY : on Monitor coord
+            */
+    </script>
+</body>
+
+</html>
