@@ -28,11 +28,15 @@
             color: yellow;
             background-color: purple;
         }
+        
+        [v-cloak] {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <div id="example">
+    <div id="example" v-cloak>
         <p> 이름 : <input type="text" v-model="name" placeholder="두자 이상 입력하세요" /> </p>
         <table id="list">
             <thead>
