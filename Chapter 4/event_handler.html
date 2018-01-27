@@ -21,33 +21,54 @@
     </div>
     <script>
         var vm = new Vue({
-            el: "#example",
-            data: {
-                amount: 0,
-                balance: 0,
-            },
-            methods: {
-                deposit: function(e) {
-                    var amt = parseInt(this.amount);
-                    if (amt <= 0) {
-                        alert("more than 0");
-                    } else {
-                        this.balance += amt;
-                    }
-
+                el: "#example",
+                data: {
+                    amount: 0,
+                    balance: 0,
                 },
-                withdraw: function(e) {
-                    var amt = parseInt(this.amount);
-                    if (amt <= 0) {
-                        alert("more than 0");
-                    } else if (amt > this.balance) {
-                        alert("not enough");
-                    } else {
-                        this.balance -= amt;
+                methods: {
+                    deposit: function(e) {
+                        var amt = parseInt(this.amount);
+                        if (amt <= 0) {
+                            alert("more than 0");
+                        } else {
+                            this.balance += amt;
+                        }
+
+                    },
+                    withdraw: function(e) {
+                        var amt = parseInt(this.amount);
+                        if (amt <= 0) {
+                            alert("more than 0");
+                        } else if (amt > this.balance) {
+                            alert("not enough");
+                        } else {
+                            this.balance -= amt;
+                        }
                     }
                 }
-            }
-        })
+            })
+            /* event object(e)
+            target : returns event triggered HTML element
+            currentTarget : return event handler triggering HTML element
+            path : HTML Full path, array
+            bubbles : event bubbles?
+            cancelable : can be prevented?
+            defaultPrevented : currently prevented?
+            eventPhase : [CAPTURE, AT_TAGER, BUBBLEING]
+            srcElement : (IE)
+            ----
+            preventDefault() : prevent autorun
+            stopPropagation() : prevent prop
+            */
+            /*
+            keyboard : altkey, ctrlkey, shiftkey, metakey(Window,Command),key, code,keyCode..
+            mouse : button (0, 1(wheel), 2), buttons(after event pressing)
+            clientX, clientY : on-viewport coord
+            layerX, layerY : on HTML element coord
+            pageX, pageY : on HTML Document coord
+            screenX, screenY : on Monitor coord
+            */
     </script>
 </body>
 
