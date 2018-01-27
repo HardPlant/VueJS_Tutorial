@@ -1,0 +1,30 @@
+<html>
+
+<head>
+
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="example">
+        <button id="a" v-bind:style="[myColor, myLayout]">테스트</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#example",
+            data: {
+                myColor: {
+                    backgroundColor: 'aqua',
+                    border: 'solid 1px gray',
+                },
+                myLayout: {
+                    width: '100px',
+                    textAlign: 'center'
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
