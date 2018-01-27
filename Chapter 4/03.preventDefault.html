@@ -21,6 +21,7 @@
 
 <body>
     <div id="example" v-on:contextmenu="ctxStop">
+        <!-- v-on:contextmenu.prevent="ctxStop" to not e.preventDefault()-->
         <a href="https://facebook.com" @click="confirmFB">페이스북</a>
     </div>
     <script>
