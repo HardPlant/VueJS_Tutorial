@@ -38,6 +38,7 @@
 <body>
     <div id="example" v-cloak>
         <p> 이름 : <input type="text" v-model="name" v-on:keyup.13="search" placeholder="두자 이상 입력하세요" /> </p>
+        <!-- v.on:keyup.ctrl.67 = "copy", Ctrl+C (support alias : .enter, .tab, .delete, .esc, .space, .up, .down, .left, .right , .ctrl, .alt, .shift, .meta)  -->
         <table id="list">
             <thead>
                 <th>번호</th>
