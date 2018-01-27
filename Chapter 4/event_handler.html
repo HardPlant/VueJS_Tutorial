@@ -12,7 +12,12 @@
 
 <body>
     <div id="example" class="container layout1">
-
+        <p><input type="text" v-model="amount" class="form-control" /></p>
+        <p>
+            <button id="deposit" v-on:click="deposit" class="btn btn-primary">예금</button>
+            <button id="withdraw" v-on:click="withdraw" class="btn btn-primary">인출</button>
+        </p>
+        <h3>계좌 잔고 : {{balance}}</h3>
     </div>
     <script>
         var vm = new Vue({
@@ -21,6 +26,27 @@
                 amount: 0,
                 balance: 0,
             },
+            methods: {
+                deposit: function(e) {
+                    var amt = parseInt(this.amount);
+                    if (amt <= 0) {
+                        alert("more than 0");
+                    } else {
+                        this.balance += amt;
+                    }
+
+                },
+                withdraw: function(e) {
+                    var amt = parseInt(this.amount);
+                    if (amt <= 0) {
+                        alert("more than 0");
+                    } else if (amt > this.balance) {
+                        alert("not enough");
+                    } else {
+                        this.balance -= amt;
+                    }
+                }
+            }
         })
     </script>
 </body>
