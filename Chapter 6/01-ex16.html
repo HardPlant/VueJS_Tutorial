@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<template id="listTemplate">
+    <li>{{message}}</li>
+</template>
+
+<script>
+    Vue.component('list-component', {
+        template: '#listTemplate',
+        props: {
+            message: {
+                type: String,
+                default: "hello"
+            },
+            count: {
+                type: Number,
+                required: true
+            },
+            countries: {
+                type: Array,
+                default: function() {
+                    return ['대한민국'];
+                }
+            }
+        }
+    })
+</script>
+
+<body>
+    <div id="app">
+        <list-component message="Hello" :count="100" :countries="['중국']"></list-component>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.devtools = true;
+    var v = new Vue({
+        el: '#app'
+    })
+</script>
+
+</html>
