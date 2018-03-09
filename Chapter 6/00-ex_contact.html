@@ -83,18 +83,52 @@
     })
 </script>
 
-<template id='search-contact-component'>
+<template id='searchcontactTemplate'>
 <div>
-    <contactlist-component></contactlist-component>
+    <search-component placeholder="두글자 이상 입력후 엔터!"
+    v-on:search="searchEvent"></search-component>
+    <contactlist-component v-bind:contacts="contactlist"></contactlist-component>
+    <div v-show:"isProcessing === true">조회중</div>
+    
 </div>
 </template>
 <script>
     Vue.component('search-contact-component', {
-
+        template: "#searchcontactTemplate",
+        data: function() {
+            return {
+                contactlist: [],
+                isProcessing: false
+            }
+        },
+        methods: {
+            searchEvent: function(name) {
+                if (name == '')
+                    this.contactlist = [];
+                else
+                    this.fetchContacts(name);
+            },
+            fetchContacts: _.debounce(
+                function(name) {
+                    this.contactlist = [];
+                    this.isProcessing = ture;
+                    var url = "http://sample.bmaster.kro.kr/contacts_log/search/" + name;
+                    var vm = this;
+                    fetch(url)
+                        .then(function(response) {
+                            return response.json()
+                        }).then(function(json) {
+                            vm.contactlist = json;
+                            vm.isProcessing = false;
+                        }).catch(function(ex) {
+                            console.log('parsing failed', ex);
+                            vvm.contactlist = [];
+                            vm.isProcessing = false;
+                        })
+                }, 300)
+        }
     })
 </script>
-
-
 
 <body>
     <search-component></search-component>
@@ -103,24 +137,7 @@
 
 <script type="text/javascript">
     Vue.config.devtools = true;
-    var v = new Vue({
-        el: '#app',
-        data: {
-            list1: [{
-                "no": 97,
-                "name": "abc",
-                "tel": "010-3456-8829",
-                "address": "서울"
-            }],
-
-            list2: [{
-                "no": 97,
-                "name": "abc",
-                "tel": "010-3456-8829",
-                "address": "서울"
-            }]
-        }
-    })
+    var v = new Vue({})
 </script>
 
 </html>
