@@ -100,10 +100,103 @@
 </template>
 <script>
     Vue.component('list-component', {
-        template: 'listTemplate'
-    })
+        template: 'listTemplate',
+        created: function() {
+            eventBus.$on('add-todo', this.addTodo);
+        },
+        data: function() {
+            return {
+                todolist: [{
+                    todo: "영화보기",
+                    done: false
+                }, {
+                    todo: "영화보기",
+                    done: true
+                }, {
+                    todo: "영화보기",
+                    done: false
+                }, {
+                    todo: "영화보기",
+                    done: false
+                }, ]
+            }
+
+        },
+        methods: {
+            checked: function(done) {
+                if (done) return {
+                    checked: true
+                }
+                else return {
+                    checked: false
+                }
+            },
+            addTodo: function(todo) {
+                if (todo !== "") {
+                    this.todolist.push({
+                        todo: todo,
+                        done: false
+                    })
+                }
+            },
+            doneToggle: function(index) {
+                this.todolist[index].done = !this.todolist[index].done
+            },
+            deleteTodo: function(index) {
+                this.todolist.splice(index, 1);
+            }
+        }
+    }, )
 </script>
 <!-- list-component 종료 -->
+
+<!-- input-component -->
+<style>
+    .input {
+        border: none;
+        width: 755;
+        height: 35px;
+        padding: 10px;
+        float: left;
+        font-size: 16px;
+    }
+    
+    .addbutton {
+        padding: 10px;
+        width: 25%;
+        height: 35px;
+        background: #d9d9d9;
+        color: #555;
+        float: left;
+        text-align: center;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+</style>
+<template id=inputTemplate>
+<div>
+    <input class='input' type='text' id='task' v-model.trim='todo'
+    placeholder="Enter!" v-on:keyup.enter="addTodo">
+    <span class="addbutton" v-on:click="addTodo">추 가</span>
+</div>
+</template>
+<script>
+    Vue.component('input-component', {
+        template: '#inputTemplate',
+        data: function() {
+            return {
+                todo: ""
+            };
+        },
+        methods: {
+            addTodo: function() {
+                eventBus.$emit('add-todo', this.todo);
+            }
+        }
+    })
+</script>
+<!--  -->
 
 <body>
     <div id="todolistapp">
