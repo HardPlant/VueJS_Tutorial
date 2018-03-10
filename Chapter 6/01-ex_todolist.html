@@ -90,7 +90,7 @@
 <template id="listTemplate">
 <ul id="todolist">
     <li v-for="(a, index) in todolist" v-bind:class="checked(a.done)" 
-    v-onclick="doneToggle(index)">
+    v-on:click="doneToggle(index)">
     <span>{{a.todo}}</span>
     <span v-if="a.done">(완료)</span>
     <span class="close" v-on:click.stop="deleteTodo(index)">&#x00D7;</span>
@@ -100,7 +100,7 @@
 </template>
 <script>
     Vue.component('list-component', {
-        template: 'listTemplate',
+        template: '#listTemplate',
         created: function() {
             eventBus.$on('add-todo', this.addTodo);
         },
@@ -110,13 +110,13 @@
                     todo: "영화보기",
                     done: false
                 }, {
-                    todo: "영화보기",
+                    todo: "영화보",
                     done: true
                 }, {
-                    todo: "영화보기",
+                    todo: "영보기",
                     done: false
                 }, {
-                    todo: "영화보기",
+                    todo: "화보기",
                     done: false
                 }, ]
             }
@@ -146,7 +146,7 @@
                 this.todolist.splice(index, 1);
             }
         }
-    }, )
+    })
 </script>
 <!-- list-component 종료 -->
 
@@ -192,6 +192,7 @@
         methods: {
             addTodo: function() {
                 eventBus.$emit('add-todo', this.todo);
+                this.todo = "";
             }
         }
     })
@@ -202,10 +203,15 @@
     <div id="todolistapp">
         <div id="header" class="header">
             <h2> Todo List App</h2>
+            <input-component></input-component>
         </div>
+        <list-component></list-component>
     </div>
 </body>
 <script type="text/javascript">
+    var vm = new Vue({
+        el: "#todolistapp"
+    })
 </script>
 
 </html>
