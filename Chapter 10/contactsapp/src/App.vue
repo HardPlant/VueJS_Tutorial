@@ -43,7 +43,11 @@ export default {
     }
   },
   mounted : {},
-  computed : {},
+  computed : {
+    totalpage : function(){
+      return Math.floor((this.contactlist.totalcount - 1) / this.contactlist.pagesize) + 1;
+    }
+  },
   methods : {
     pageChanged : function(page){
       this.contactlist.pageno = page;
