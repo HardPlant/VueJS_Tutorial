@@ -1,10 +1,14 @@
 <template>
-  
+  <contactForm mode="update" :contact="contact"/>
 </template>
 
 <script>
-export default {
+import ContactForm from './ContactForm.vue';
 
+export default {
+    name : "updateContact",
+    components : {ContactForm},
+    props : ['contact']
 }
 </script>
 

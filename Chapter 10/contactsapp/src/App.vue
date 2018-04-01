@@ -51,7 +51,7 @@ export default {
       this.currentView = null;
       this.addContact(contact);
     });
-    eventBus.$on("cancel", (contact)=>{
+    eventBus.$on("updateSubmit", (contact)=>{
       this.currentView = null;
       this.updateContact(contact);
     });
@@ -60,7 +60,7 @@ export default {
     });
     eventBus.$on("editContactForm", (no)=>{
       this.fetchContactOne(no)
-      this.currentView = updateContact;
+      this.currentView = 'updateContact';
     });
     eventBus.$on("deleteContact", (no)=>{
       this.deleteContact(no)
@@ -111,7 +111,7 @@ export default {
             console.log("addContact failed : ", ex);
         })
     },
-    updateContact : function(no){
+    updateContact : function(contact){
         this.$axios.put(CONF.UPDATE.replace("${no}", contact.no), contact)
         .then((response)=>{
           this.fetchContacts();
@@ -121,7 +121,7 @@ export default {
         })
     },
     fetchContactOne : function(no){
-      this.$axios.get(CONF.UPDATE.replace("${no}", contact.no))
+      this.$axios.get(CONF.UPDATE.replace("${no}", no))
         .then((response)=>{
           this.contact = response.data;
         })
