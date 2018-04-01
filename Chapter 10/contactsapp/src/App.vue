@@ -111,7 +111,7 @@ export default {
             console.log("addContact failed : ", ex);
         })
     },
-    updateContact : function(){
+    updateContact : function(no){
         this.$axios.put(CONF.UPDATE.replace("${no}", contact.no), contact)
         .then((response)=>{
           this.fetchContacts();
@@ -129,7 +129,7 @@ export default {
             console.log("fetchOne ERR", ex);
         })
     },
-    deleteContact : function(){
+    deleteContact : function(no){
         this.$axios.delete(CONF.DELETE.replace("${no}",no))
         .then((response)=>{
           this.fetchContacts();
@@ -138,7 +138,7 @@ export default {
             console.log("Delete ERROR : ", ex);
         })
     },
-    updatePhoto : function(){
+    updatePhoto : function(no){
         var data = new FormData();
         var file = this.$refs.photofile.files[0];
         data.append('photo', file);
