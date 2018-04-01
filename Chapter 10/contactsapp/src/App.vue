@@ -2,7 +2,7 @@
   <div id="container">
     <div class="page-header">
       <h1 class="text-center">연락처 관리 애플리케이션</h1>
-      <p>(Dynamic Component + EventBus + Axios</p>
+      <p>(Dynamic Component + EventBus + Axios)</p>
     </div>
     <component :is="currentView" :contact="contact"></component>
     <contactList :contactlist="contactlist"></contactList>
@@ -22,7 +22,7 @@
 <script>
 import Vue from 'vue'
 import ContactList from './components/ContactList'
-import AddList from './components/AddList'
+import AddContact from './components/AddContact'
 import UpdateContact from './components/UpdateContact'
 import UpdatePhoto from './components/UpdatePhoto'
 
@@ -32,7 +32,7 @@ import Paginate from 'vuejs-paginate';
 
 export default {
   name:'app',
-  components : {ContactList, AddList, UpdateContact, UpdatePhoto, Paginate},
+  components : {ContactList, AddContact, UpdateContact, UpdatePhoto, Paginate},
   data : function(){
     return {
       currentView : null,
@@ -152,7 +152,11 @@ export default {
         })
     },
   },
-  watch : function(){}
+  watch : {
+    ['contactlist.pageno'] : function(){
+      this.$refs.pagebuttons.selected = this.contactlist.pageno - 1;
+    }
+  }
 }
 </script>
 
