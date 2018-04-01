@@ -1,4 +1,5 @@
 <template>
+  <div id="app">
   <div class="container">
       <div class="form-group">
           <button @click="fetchContacts">1페이지 조회</button>
@@ -30,6 +31,7 @@
 
           <button @click="changePhoto">파일 변경</button>
       </div>
+</div>  
   <span>JSON 출력</span>
   <div id="result" class="container">
       <xmp>{{result}}</xmp>
@@ -68,7 +70,7 @@ export default {
         },
         addContact : function(){
             axios.post('/api/contacts',
-            {name : this.name, tel:this.te, address:this.address})
+            {name : this.name, tel:this.tel, address:this.address})
             .then((response)=>{
                 console.log(response);
                 this.result = response.data;
@@ -83,7 +85,7 @@ export default {
             axios.put('/api/contacts'+this.no,
             {name:this.name, tel:this.tel, address:this.address})
             .then((response)=>{
-                console.log(response);
+                console.log(response); 
                 this.name='';
                 this.tel='';
                 this.address='';
@@ -104,7 +106,19 @@ export default {
                 console.log("ERROR : ", ex);
             })
         },
-        changePhoto : function(){},
+        changePhoto : function(){
+            var data = new FormData();
+            var file = this.$refs.photofile.files[0];
+            data.append('photo', file);
+
+            axios.post('/api/contacts' + this.no + '/photo', data)
+            .then((response)=>{
+                this.result = response.data;
+            })
+            .catch((ex)=>{
+                console.log('UpdatePhoto failed', ex);
+            })
+        },
     }
 }
 </script>
@@ -120,5 +134,6 @@ export default {
     margin-top: 60px;
 }
 .container{border: solid 1px gray; padding: 10px; margin-bottom: 10px; text-align: left;}
-#result{text-align: dashed 1px gray; padding: 5px 5px 5px 20px;}
+#result{text-align: left; padding:20px; border:solid 1px black;}
+.form-group{border: dashed 1px gray; padding: 5px 5px 5px 20px;}
 </style>

@@ -1,28 +1,131 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div id="container">
+    <div class="page-header">
+      <h1 class="text-center">연락처 관리 애플리케이션</h1>
+      <p>(Dynamic Component + EventBus + Axios</p>
+    </div>
+    <component :is="currentView" :contact="contact"></component>
+    <contactList :contactlist="contactlist"></contactList>
+    <paginate ref="pagebuttons"
+      :page-count="totalpage"
+      :page-range="7"
+      :margin-pages="3"
+      :click-handler="pageChanged"
+      :prev-text="'이전'"
+      :next-text="'다음'"
+      :container-class="'pagination'"
+      :page-class="'page-item'">
+    </paginate>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Vue from 'vue'
+import ContactList from './components/ContactList'
+import AddList from './components/AddList'
+import UpdateContact from './components/UpdateContact'
+import UpdatePhoto from './components/UpdatePhoto'
+
+import CONF from './Config.js'
+import eventBus from './EventBus.js'
+import Paginate from 'vuejs-paginate';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  name:'app',
+  components : {ContactList, AddList, UpdateContact, UpdatePhoto, Paginate},
+  data : function(){
+    return {
+      currentView : null,
+      contact : {no:0, name:'', tel:'', address:'', photo:''},
+      contactlist : {
+        pageno:1, pagesize: CONF.PAGESIZE, totalcount:0, contacts:[]
+      }
+    }
+  },
+  mounted : {},
+  computed : {},
+  methods : {
+    pageChanged : function(page){
+      this.contactlist.pageno = page;
+      this.fetchContacts();
+    },
+    fetchContacts:function(){
+      this.$axios.get(CONF.FETCH, {
+        params : {
+          pageno : this.contactlist.pageno,
+          pagesize : this.contactlist.pagesize
+        }
+      })
+      .then((response)=>{
+        this.contactlist = response.data;
+      })
+      .catch((ex)=>{
+        console.log('fetchContacts failed', ex);
+        this.contactlist.contacts = [];
+      })
+    },
+    addContact : function(contact){
+        this.$axios.post(CONF.ADD, contact)
+        .then((response)=>{
+          this.contactlist.pageno = 1;
+          this.fetchContacts();
+        })
+        .catch((ex)=>{
+            console.log("addContact failed : ", ex);
+        })
+    },
+    updateContact : function(){
+        this.$axios.put(CONF.UPDATE.replace("${no}", contact.no), contact)
+        .then((response)=>{
+          this.fetchContacts();
+        })
+        .catch((ex)=>{
+            console.log("update ERR", ex);
+        })
+    },
+    fetchContactOne : function(no){
+      this.$axios.get(CONF.UPDATE.replace("${no}", contact.no))
+        .then((response)=>{
+          this.contact = response.data;
+        })
+        .catch((ex)=>{
+            console.log("fetchOne ERR", ex);
+        })
+    },
+    deleteContact : function(){
+        this.$axios.delete(CONF.DELETE.replace("${no}",no))
+        .then((response)=>{
+          this.fetchContacts();
+        })
+        .catch((ex)=>{
+            console.log("Delete ERROR : ", ex);
+        })
+    },
+    updatePhoto : function(){
+        var data = new FormData();
+        var file = this.$refs.photofile.files[0];
+        data.append('photo', file);
+
+        this.$axios.post(CONF.UPDATE_PHOTO.replace("${no}", no), data)
+        .then((response)=>{
+            this.fetchContacts();
+        })
+        .catch((ex)=>{
+            console.log('UpdatePhoto failed', ex);
+        })
+    },
+  },
+  watch : function(){}
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css");
+
+#container{
+  font-family: 'Avenir', Arial, Helvetica, sans-serif;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top:60px;
 }
 </style>
