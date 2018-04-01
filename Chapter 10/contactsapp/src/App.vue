@@ -42,7 +42,40 @@ export default {
       }
     }
   },
-  mounted : {},
+  mounted : function(){
+    this.fetchContacts();
+    eventBus.$on("cancel", ()=>{
+      this.currentView = null;
+    });
+    eventBus.$on("addSubmit", (contact)=>{
+      this.currentView = null;
+      this.addContact(contact);
+    });
+    eventBus.$on("cancel", (contact)=>{
+      this.currentView = null;
+      this.updateContact(contact);
+    });
+    eventBus.$on("addContactForm", ()=>{
+      this.currentView = 'addContact';
+    });
+    eventBus.$on("editContactForm", (no)=>{
+      this.fetchContactOne(no)
+      this.currentView = updateContact;
+    });
+    eventBus.$on("deleteContact", (no)=>{
+      this.deleteContact(no)
+    });
+    eventBus.$on("editPhoto", (no)=>{
+      this.fetchContactOne(no)
+      this.currentView = 'updatePhoto';
+    });
+    eventBus.$on("updatePhoto", (no, file)=>{
+      if (typeof file !== 'undefined'){
+        this.updatePhoto(no, file);
+      }
+      this.currentView = null;
+    });
+  },
   computed : {
     totalpage : function(){
       return Math.floor((this.contactlist.totalcount - 1) / this.contactlist.pagesize) + 1;
