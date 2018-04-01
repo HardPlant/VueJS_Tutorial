@@ -68,53 +68,28 @@ ul li.checked::before {
 </template>
 
 <script type="text/javascript">
-import eventBus from './EventBus.vue'
-
+import Constant from "../constant"
 export default {
-    created: function() {
-            eventBus.$on('add-todo', this.addTodo);
-        },
-        data: function() {
-            return {
-                todolist: [{
-                    todo: "영화보기",
-                    done: false
-                }, {
-                    todo: "영화보",
-                    done: true
-                }, {
-                    todo: "영보기",
-                    done: false
-                }, {
-                    todo: "화보기",
-                    done: false
-                }, ]
-            }
-
-        },
-        methods: {
-            checked: function(done) {
-                if (done) return {
-                    checked: true
-                }
-                else return {
-                    checked: false
-                }
-            },
-            addTodo: function(todo) {
-                if (todo !== "") {
-                    this.todolist.push({
-                        todo: todo,
-                        done: false
-                    })
-                }
-            },
-            doneToggle: function(index) {
-                this.todolist[index].done = !this.todolist[index].done
-            },
-            deleteTodo: function(index) {
-                this.todolist.splice(index, 1);
-            }
+    computed : {
+        todolist () {
+            return this.$store.state.todolist;
         }
+    },
+    methods: {
+        checked: function(done) {
+            if (done) return {
+                checked: true
+            }
+            else return {
+                checked: false
+            }
+        },
+        doneToggle: function(index) {
+            this.$store.commit(Constant.DONE_TOGGLE, {index:index});
+        },
+        deleteTodo: function(index) {
+            this.$store.commit(Constant.DELETE_TODO, {index:index});
+        }
+    }
     }
 </script>

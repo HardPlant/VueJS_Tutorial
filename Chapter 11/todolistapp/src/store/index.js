@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Constant from '../constant';
+import Constant from '../constant.js';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -27,3 +27,4 @@ const store = new Vuex.Store({
         }
     }
 })
+export default store;
