@@ -79,8 +79,31 @@ export default {
             })
         },
         fetchContactOne : function(){},
-        updateContact : function(){},
-        deleteContact : function(){},
+        updateContact : function(){
+            axios.put('/api/contacts'+this.no,
+            {name:this.name, tel:this.tel, address:this.address})
+            .then((response)=>{
+                console.log(response);
+                this.name='';
+                this.tel='';
+                this.address='';
+                this.result=response.data;
+            })
+            .catch((ex)=>{
+                console.log("ERR", ex);
+            })
+        },
+        deleteContact : function(){
+            axios.delete('/api/contacts'+this.no)
+            .then((response)=>{
+                console.log(response);
+                this.no = 0;
+                this.result = response.data;
+            })
+            .catch((ex)=>{
+                console.log("ERROR : ", ex);
+            })
+        },
         changePhoto : function(){},
     }
 }
