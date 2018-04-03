@@ -9,16 +9,16 @@ const store = new Vuex.Store({
     state: {
         currentRegion: "all",
         countries: [
-            { no: 1, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 2, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 3, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 4, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 5, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 6, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 7, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 8, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 9, name: "미국", capital: "워싱턴DC", region: "america" },
-            { no: 10, name: "미국", capital: "워싱턴DC", region: "america" },
+            { no: 1, name: "1", capital: "워싱턴DC", region: "america1" },
+            { no: 2, name: "미국3", capital: "워싱턴DC", region: "amer2ica" },
+            { no: 3, name: "미국4", capital: "워싱턴DC", region: "ameri3ca" },
+            { no: 4, name: "미국5", capital: "워싱턴DC", region: "americ4a" },
+            { no: 5, name: "미국7", capital: "워싱턴DC", region: "america5" },
+            { no: 6, name: "미국8", capital: "워싱턴DC", region: "america6" },
+            { no: 7, name: "미국9", capital: "워싱턴DC", region: "america87" },
+            { no: 8, name: "미국0", capital: "워싱턴DC", region: "america9" },
+            { no: 9, name: "미국-", capital: "워싱턴DC", region: "america1" },
+            { no: 10, name: "미국1", capital: "워싱턴DC", region: "americ2a" },
         ]
     },
     getters: {

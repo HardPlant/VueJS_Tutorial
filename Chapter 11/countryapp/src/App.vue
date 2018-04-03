@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>hello</h1>
     <region-buttons></region-buttons>
     <country-list></country-list>
   </div>
