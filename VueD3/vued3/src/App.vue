@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vsvg></vsvg>
+    <trans></trans>
   </div>
 </template>
 
@@ -9,12 +9,13 @@ import HelloWorld from './components/HelloWorld'
 import datum from './components/datum.vue'
 import datafunc from './components/datafunc.vue'
 import vsvg from './components/vsvg.vue'
+import Trans from './components/Trans.vue'
 
 export default {
   name: 'App',
   components: {
     //HelloWorld, datum, datafunc, 
-    vsvg
+    vsvg, Trans
   }
 }
 </script>
