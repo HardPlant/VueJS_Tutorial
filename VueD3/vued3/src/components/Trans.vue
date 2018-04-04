@@ -1,5 +1,8 @@
 <template>
   <div>
+      <button @click="blue"> Blue </button>
+      <button @click="gray"> Gray </button>
+      <h3>Simple transitions</h3>
             <svg width = "300" height = "300">
          <rect x = "20" 
             y = "20"
@@ -51,6 +54,7 @@ export default {
         console.log(Object.getOwnPropertyNames(d3).filter(function (p) {
     return typeof d3[p] === 'function';
 }));
+d3.select("body").transition().style("background-color", "lightblue");
             var width = 300;
             var height = 300;
             var svg = d3.select("#svgcontainer")
@@ -75,6 +79,14 @@ export default {
                .attr("r", 30)
                .attr("fill", "red")
         
+    },
+    methods : {
+        blue : function(){
+            this.$d3.select("body").transition().style("background-color", "lightblue");
+        },
+        gray : function(){
+            this.$d3.select("body").transition().style("background-color", "gray");
+        }
     }
 }
 </script>
