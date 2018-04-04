@@ -1,5 +1,6 @@
 <template>
   <section class="hero is-success is-fullheight">
+    <h1> Hello World! </h1>
     <div class="hero-body">
       <div class="container">
         <h1>Creating Beautiful Charts Using Vue.js Wrappers For Chart.js</h1>

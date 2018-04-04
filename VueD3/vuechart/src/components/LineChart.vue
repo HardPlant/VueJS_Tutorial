@@ -1,10 +1,8 @@
-<template>
-  
-</template>
-
 <script>
+/* eslint-disable */
 import {Line} from 'vue-chartjs'
-export default Line.extend({
+export default {
+    extends: Line,
     data(){
         return{
             datacollection : {
@@ -46,7 +44,7 @@ export default Line.extend({
     mounted(){
         this.renderChart(this.datacollection, this.options)
     }
-})
+}
 </script>
 
 <style>
