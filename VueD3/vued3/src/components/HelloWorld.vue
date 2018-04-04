@@ -1,8 +1,9 @@
 <template>
 <div>
-  <div class="myclass">
-      Hello World!
-  </div>
+  <ul id = "list">
+  <li><li>
+  <li></li>
+  </ul> 
 </div>
 </template>
 
@@ -23,6 +24,14 @@ export default {
     //d3.select(".myclass").style("color", "red");
     //var element = d3.select(".myclass")
     //element.classed("myanotherclass", !oneBar.classed("myanotherclass"));
+    //d3.selectAll(".myclass").attr("style", "color: red");
+    d3.select("#list").selectAll("li")
+   .data([10, 20, 30, 25, 15])
+   .text(function(d) { return "This is pre-existing element and the value is " + d; })
+   .enter()
+   .append("li")
+   .text(function(d) 
+      { return "This is dynamically created element and the value is " + d; });
   }
 }
 </script>
