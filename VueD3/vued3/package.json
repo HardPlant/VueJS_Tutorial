@@ -10,7 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "chart.js": "^2.7.2",
+    "chartkick": "^2.3.5",
     "vue": "^2.5.2",
+    "vue-chartjs": "^3.3.1",
+    "vue-chartkick": "^0.3.0",
     "vue-d3": "^0.1.0"
   },
   "devDependencies": {
