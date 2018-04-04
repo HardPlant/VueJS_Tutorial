@@ -33,7 +33,9 @@ export default {
         .text(function(d) { return "This is pre-existing element and the value is " + d; })
         .enter() // 데이터에 없는 요소를 자동으로 추가
         .append("li")
-        .text(function(d) { return "This is dynamically created element and the value is " + d; });;
+        .text(function(d) { return "This is dynamically created element and the value is " + d; });
+        //.exit() // 데이터가 없는 요소를 선택
+        //.remove() // 해당 요소를 삭제
     }
 }
 </script>

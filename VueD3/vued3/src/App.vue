@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <datum></datum>
+    <datafunc></datafunc>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
 import datum from './components/datum.vue'
+import datafunc from './components/datafunc.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld, datum
+    HelloWorld, datum, datafunc
   }
 }
 </script>
