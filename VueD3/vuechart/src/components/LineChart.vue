@@ -39,7 +39,8 @@ export default {
             display: true
         },
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        height:200
     },
     mounted(){
         this.renderChart(this.datacollection, this.options)

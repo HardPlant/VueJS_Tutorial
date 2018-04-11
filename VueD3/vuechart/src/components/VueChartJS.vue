@@ -15,6 +15,7 @@
             <div class="column">
                 <h3>Bar Chart</h3>
                 <!--Bar Chart example-->
+                <bar-chart></bar-chart>
             </div>
         </div>
         <div class="columns">
