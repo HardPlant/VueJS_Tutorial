@@ -5,22 +5,19 @@
     <nav>
       <ul>
         <li>
-          <a href="@" @click="changeMenu('Contact')">Home</a>
-        </li>
-        <li>  components = {Home, About, Contact},
-          data(){
-            return {currentView : 'home'}
-          }
-          <a href="@" @click="changeMenu('about')">about</a>
+          <router-link to='/home'>home</router-link>
         </li>
         <li>
-          <a href="@" @click="changeMenu('contact')">Contact</a>
+          <router-link to='/about'>about</router-link>
+        </li>
+        <li>
+          <router-link to='/contacts'>contacts</router-link>
         </li>
       </ul>
     </nav>
   </div>
   <div class="container">
-    <component v-bind:is="currentView"></component>
+    <router-view></router-view>
   </div>
 </div>
 </template>
@@ -29,20 +26,26 @@
 import Home from './components/Home.vue';
 import About from './components/About.vue';
 import Contact from './components/Contact.vue';
+import VueRouter from 'vue-router'
+
+const router = new VueRouter({
+  routes : [
+    {path : '/', component: Home},
+    {path : '/home', component: Home},
+    {path : '/about', component: About},
+    {path : '/contacts', component: Contact},
+  ]
+})
+
 export default {
-  components = {Home, About, Contact},
-  data(){
-    return {currentView : 'home'}
-  },
-  methods : {
-    changeMenu(view){
-      this.currentView = view;
-    }
-  }
+  name : 'app',
+  router
 }
 </script>
 
 <style scoped>
+@import url("https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css");
+
 .header{ background-color: aqua; padding: 10px 0px 0px 0px;}
 .headerText{padding:0px 20px 0px 20px;}
 ul{list-style-type: none; margin:0; padding:0;
